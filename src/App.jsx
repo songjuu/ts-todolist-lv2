@@ -8,26 +8,26 @@ function App() {
   const [todos, setTodos] = useState([
     {
       id: uuid(),
-      title: "테스트 제목1",
-      contents: "테스트 내용1",
+      title: "공부",
+      contents: "자바스크립트 공부하기",
       isDone: false,
     },
     {
       id: uuid(),
-      title: "테스트 제목2",
-      contents: "테스트 내용2",
+      title: "공부",
+      contents: "redux 강의 복습하기",
       isDone: false,
     },
     {
       id: uuid(),
-      title: "테스트 제목3",
-      contents: "테스트 내용3",
+      title: "취미",
+      contents: "수영가기",
       isDone: true,
     },
     {
       id: uuid(),
-      title: "테스트 제목4",
-      contents: "테스트 내용4",
+      title: "일상",
+      contents: "친구 만나기",
       isDone: false,
     },
   ]);
@@ -50,7 +50,6 @@ function App() {
       >
         <InputForm todos={todos} setTodos={setTodos} />
         <div>
-          {/* TODO: list 영역 컴포넌트 나누기 */}
           <TodoList todos={todos} setTodos={setTodos} listIsDone={false} />
           <TodoList todos={todos} setTodos={setTodos} listIsDone={true} />
         </div>

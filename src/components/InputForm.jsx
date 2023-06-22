@@ -1,27 +1,29 @@
 import React from "react";
 import { useState } from "react";
 import uuid from "react-uuid";
+import { addTodo } from "../redux/modules/todos";
+import { useDispatch } from "react-redux";
 
 // input 기능 구현
-function InputForm({ todos, setTodos }) {
+function InputForm() {
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+
+  const dispatch = useDispatch();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newTodo = {
+      id: uuid(),
+      title,
+      contents,
+    };
+    dispatch(addTodo(newTodo));
+  };
+
   return (
     <div>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          const newTodo = {
-            id: uuid(),
-            title,
-            contents,
-            isDone: false,
-          };
-          setTodos([...todos, newTodo]);
-          setTitle("");
-          setContents("");
-        }}
-      >
+      <form onSubmit={submitHandler}>
         <input
           type="text"
           placeholder="제목을 입력하세요."

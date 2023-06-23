@@ -67,5 +67,3 @@ const todos = (state = initialState, action) => {
 };
 
 export default todos;
-
-// 안녕히 계세요..

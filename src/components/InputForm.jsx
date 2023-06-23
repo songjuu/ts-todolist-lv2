@@ -19,6 +19,8 @@ function InputForm() {
       contents,
     };
     dispatch(addTodo(newTodo));
+    setTitle("");
+    setContents("");
   };
 
   return (

@@ -46,7 +46,7 @@ const initialState = [
   },
 ];
 
-// Reducer 기본형태
+// Reducer
 const todos = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_TODO":

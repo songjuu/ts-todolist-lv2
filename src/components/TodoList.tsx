@@ -2,23 +2,33 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, toggleStatusTodo } from "../redux/modules/todos";
 import { Link } from "react-router-dom";
+import { RootState } from "../redux/config/configStore";
+
+//interface or type 선언
+type TodoListProps = {
+  listIsDone: boolean;
+};
 
 // 할 일 목록, 완료 목록 기능 구현
-function TodoList({ listIsDone }) {
-  const todos = useSelector((state) => state.todos);
+function TodoList({ listIsDone }: TodoListProps) {
+  const todos = useSelector((state: RootState) => state.todos);
   const dispatch = useDispatch();
 
   //삭제버튼
-  const deleteHandler = (e) => {
-    const id = e.target.getAttribute("data-key");
-    dispatch(deleteTodo(id));
+  const deleteHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    const id = (e.target as HTMLElement).getAttribute("data-key");
+    dispatch(deleteTodo(id as string));
   };
 
   //상태버튼
-  const toggleStatusHandler = (e) => {
-    const statusId = e.target.getAttribute("data-key");
+  const toggleStatusHandler = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    const statusId = (e.target as HTMLElement).getAttribute("data-key");
     const isDone = listIsDone;
-    dispatch(toggleStatusTodo(statusId, isDone));
+    dispatch(toggleStatusTodo(statusId as string, isDone));
   };
 
   return (
@@ -53,7 +63,7 @@ function TodoList({ listIsDone }) {
                 <button onClick={toggleStatusHandler} data-key={todo.id}>
                   {listIsDone ? "취소" : "완료"}
                 </button>
-                <button onClick={deleteHandler} data-key={todo.id}>
+                <button onClick={(e) => deleteHandler(e)} data-key={todo.id}>
                   삭제
                 </button>
               </div>

@@ -1,10 +1,17 @@
 import uuid from "react-uuid";
 
-const ADD_TODO = "ADD_TODO";
-const DELETE_TODO = "DELETE_TODO";
-const TOGGLE_STATUS_TODO = "TOGGLE_STATUS_TODO";
+const ADD_TODO = "ADD_TODO" as const;
+const DELETE_TODO = "DELETE_TODO" as const;
+const TOGGLE_STATUS_TODO = "TOGGLE_STATUS_TODO" as const;
 
-export const addTodo = (todo) => {
+interface TodoType {
+  id: string;
+  title: string;
+  contents: string;
+  isDone?: boolean;
+}
+
+export const addTodo = (todo: TodoType) => {
   return {
     type: ADD_TODO,
     newTodo: {
@@ -16,20 +23,25 @@ export const addTodo = (todo) => {
   };
 };
 
-export const deleteTodo = (id) => {
+export const deleteTodo = (id: string) => {
   return {
     type: DELETE_TODO,
     id,
   };
 };
 
-export const toggleStatusTodo = (id, isDone) => {
+export const toggleStatusTodo = (id: string, isDone: boolean) => {
   return {
     type: TOGGLE_STATUS_TODO,
     id,
     isDone,
   };
 };
+
+type TodosAction =
+  | ReturnType<typeof addTodo>
+  | ReturnType<typeof deleteTodo>
+  | ReturnType<typeof toggleStatusTodo>;
 
 const initialState = [
   {
@@ -47,7 +59,7 @@ const initialState = [
 ];
 
 // Reducer
-const todos = (state = initialState, action) => {
+const todos = (state = initialState, action: TodosAction) => {
   switch (action.type) {
     case "ADD_TODO":
       return [...state, action.newTodo];

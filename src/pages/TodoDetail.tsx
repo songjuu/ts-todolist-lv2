@@ -2,11 +2,12 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
+import { RootState } from "../redux/config/configStore";
 
 const TodoDetail = () => {
   const navigate = useNavigate();
   const { id } = useParams();
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state: RootState) => state.todos);
   const todo = todos.find((item) => item.id === id);
 
   return (
@@ -22,8 +23,8 @@ const TodoDetail = () => {
             이전으로
           </BackButton>
         </div>
-        <h1>{todo.title}</h1>
-        <p>{todo.contents}</p>
+        <h1>{todo?.title}</h1>
+        <p>{todo?.contents}</p>
       </DetailBox>
     </BoxContainer>
   );

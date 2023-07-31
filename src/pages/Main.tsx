@@ -3,6 +3,10 @@ import styled from "styled-components";
 import TodoList from "../components/TodoList";
 import InputForm from "../components/InputForm";
 
+// type TodoListProps = {
+//     listIsDone: boolean
+//   };
+
 function Main() {
   return (
     <Container>
